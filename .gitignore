@@ -1,0 +1,4 @@
+*.suo
+*.exe
+DesignApp/DesignApp/bin/*
+DesignApp/DesignApp/obj/*
