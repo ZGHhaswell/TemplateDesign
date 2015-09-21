@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using DesignApp.Data;
 using Microsoft.Practices.Prism.Commands;
@@ -111,6 +114,8 @@ namespace DesignApp
             newPoint.YExporess = PointYExpress;
 
             GraphSet.GraphObjects.Add(newPoint);
+
+            Canvas.InvalidateVisual();
         }
 
         private int lineCount = 0;
@@ -134,9 +139,14 @@ namespace DesignApp
             newLine.YPoint = lineB;
             
             GraphSet.GraphObjects.Add(newLine);
+
+            Canvas.InvalidateVisual();
         }
 
         public GraphSet GraphSet { get; set; }
+
+
+        public System.Windows.Controls.Canvas Canvas { get; set; }
 
         public MainViewModel()
         {

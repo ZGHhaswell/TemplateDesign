@@ -15,5 +15,10 @@ namespace DesignApp.Data
         public string XExpress { get; set; }
 
         public string YExporess { get; set; }
+
+        public override void Draw(System.Windows.Media.DrawingContext dc)
+        {
+            
+        }
     }
 }

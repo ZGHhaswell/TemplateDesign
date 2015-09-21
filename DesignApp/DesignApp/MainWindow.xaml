@@ -9,7 +9,7 @@
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -22,7 +22,7 @@
                     <TextBlock Text="设置模板名称:  " HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                     <TextBox Text="{Binding TemplateName, Mode=TwoWay}" Width="100"></TextBox>
                 </StackPanel>
-                
+
                 <TextBlock Text="添加参数1"></TextBlock>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBox Text="{Binding Param1}" Width="100"></TextBox>
@@ -86,7 +86,7 @@
                     <TextBox Text="{Binding Param9Value}" Width="100"></TextBox>
                 </StackPanel>
             </StackPanel>
-                
+
 
         </GroupBox>
         <GroupBox Header="图元编辑" Grid.Column="1" Foreground="Blue">
@@ -116,9 +116,29 @@
                     <TextBox Text="{Binding LineB, Mode=TwoWay}" Width="50"></TextBox>
                 </StackPanel>
                 <Button Content="增加" Command="{Binding AddLineCommand}" Height="25" Width="70" HorizontalAlignment="Right"></Button>
+
+                <Grid >
+                    <ListBox ItemsSource="{Binding GraphSet.GraphObjects}" Height="450">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </StackPanel>
-            
         </GroupBox>
-        <canvas:TemplateCanvas Grid.Column="2" DataContext="{Binding DataContext.GraphSet}"></canvas:TemplateCanvas>
+        <canvas:TemplateCanvas Width="700"  Height="700"
+            x:Name="Canvas1"
+            Grid.Column="2" DataContext="{Binding}" Margin="10,0">
+            <Ellipse
+      Canvas.Top="50"
+      Canvas.Left="50"
+      Fill="#FFFFFF00"
+      Height="75"
+      Width="75"
+      StrokeThickness="5"
+      Stroke="#FF0000FF"/>
+        </canvas:TemplateCanvas>
     </Grid>
 </Window>
