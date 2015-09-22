@@ -1,6 +1,4 @@
-﻿///
-///       $TemplateName$ 自动生成的 Code
-///
+﻿//      $TemplateName$ 自动生成的 Code
 
 using System;
 using System.Collections.Generic;
