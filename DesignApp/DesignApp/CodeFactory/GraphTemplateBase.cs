@@ -17,8 +17,8 @@ namespace DesignApp.CodeFactory
 
         public GraphTemplateBase()
         {
-            OffsetX = 10;
-            OffSetY = 10;
+            OffsetX = 100;
+            OffSetY = 100;
             Scale = 1;
         }
     }

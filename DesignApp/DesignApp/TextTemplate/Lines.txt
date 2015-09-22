@@ -1,11 +1,11 @@
-public Line $Line$
-{
-    get
-    {
-        var pointX = $PointX$;
-        var pointY = $PointY$;
-        var thickness = 12;
-        return new Line(pointX, pointY, thickness);
-    }
-}
+        public Line $Line$
+        {
+            get
+            {
+                var pointX = $PointX$;
+                var pointY = $PointY$;
+                var thickness = 12;
+                return new Line(pointX, pointY, thickness);
+            }
+        }
 

@@ -82,6 +82,7 @@
     <Compile Include="Data\RemartPoint.cs" />
     <Compile Include="Data\RemartText.cs" />
     <Compile Include="Interface\ITempalte.cs" />
+    <Compile Include="Interface\ZhuangJiTempalte.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

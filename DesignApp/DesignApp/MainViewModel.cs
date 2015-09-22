@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using DesignApp.CodeFactory;
 using DesignApp.Data;
 using DesignApp.Interface;
 using Microsoft.Practices.Prism.Commands;
@@ -534,7 +535,7 @@ namespace DesignApp
 
             var newRemartText = new RemartText(startPoint, IsHor ? Orientation.Hor : Orientation.Ver, RemartText, 12);
             newRemartText.Name = string.Format("RemartText{0}", ++remartTextCount);
-
+            newRemartText.TextExpress = RemartTextExpress;
             GraphSet.GraphObjects.Add(newRemartText);
 
             Canvas.InvalidateVisual();
@@ -589,7 +590,20 @@ namespace DesignApp
 
 
             //}
-            GetCodeTempalte();
+            //GetCodeTempalte();
+
+            var zhuangji = new ZhuangJi();
+
+            var random = new Random();
+            zhuangji.P1 = random.Next(100, 300);
+            zhuangji.P2 = random.Next(100, 150);
+            zhuangji.P3 = random.Next(100, 150);
+            zhuangji.P4 = random.Next(100, 150);
+
+            GraphSet = zhuangji;
+
+            Canvas.InvalidateVisual();
+            
         }
 
         private void GetCodeTempalte()
@@ -653,7 +667,49 @@ namespace DesignApp
                 LoadGraphObj(newGraphObjes, graphObject);
             }
 
-            //var template = Template;
+            var template = new List<string>();
+
+            foreach (var code in Template)
+            {
+                string result = string.Empty;
+                if (code.Contains("$TemplateName$"))
+                {
+                    result = code.Replace("$TemplateName$", TemplateName);
+                    template.Add(result);
+                }
+                else if (code.Contains("$ParamSet$"))
+                {
+                    template.AddRange(newParams);
+                }
+                else if (code.Contains("$Points$"))
+                {
+                    template.AddRange(newPoints);
+                }
+                else if (code.Contains("$RemartPoints$"))
+                {
+                    template.AddRange(newRemartPoints);
+                }
+                else if (code.Contains("$Lines$"))
+                {
+                    template.AddRange(newLines);
+                }
+                else if (code.Contains("$RemartLines$"))
+                {
+                    template.AddRange(newRemartLines);
+                }
+                else if (code.Contains("$RemartText$"))
+                {
+                    template.AddRange(newRemartTexts);
+                }
+                else if (code.Contains("$GraphObjects$"))
+                {
+                    template.AddRange(newGraphObjes);
+                }
+                else
+                {
+                    template.Add(code);
+                }
+            }
 
             //template = template.Replace("$TemplateName$", TemplateName);
             //template = template.Replace("$ParamSet$", newParams.ToString());
@@ -663,7 +719,7 @@ namespace DesignApp
             //template = template.Replace("$RemartLines$", newRemartLines.ToString());
             //template = template.Replace("$RemartText$", newRemartTexts.ToString());
 
-            //File.WriteAllText("C:/Tempalte.cs", template);
+            File.WriteAllLines("C:/Tempalte.cs", template);
         }
 
         private void LoadParam(IList<string> list, string param, string value)

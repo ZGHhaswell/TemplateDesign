@@ -1,11 +1,11 @@
-public RemartLine $RemartLine$
-{
-    get
-    {
-        var pointX = $PointX$;
-        var pointY = $PointY$;
-        var thickness = 12;
-        return new RemartLine(pointX, pointY, thickness);
-    }
-}
+        public RemartLine $RemartLine$
+        {
+            get
+            {
+                var pointX = $PointX$;
+                var pointY = $PointY$;
+                var thickness = 12;
+                return new RemartLine(pointX, pointY, thickness);
+            }
+        }
 
