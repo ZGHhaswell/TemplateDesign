@@ -1,0 +1,12 @@
+public RemartText $RemartText$
+{
+    get
+    {
+        var startPoint = $StartPoint$;
+        var orientation = $Orientation$;
+        var text = $Express$;
+        var thickness = 12;
+        return new RemartText(startPoint, orientation, text, thickness);
+    }
+}
+

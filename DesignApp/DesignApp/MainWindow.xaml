@@ -85,8 +85,9 @@
                     <TextBlock Text=" = " HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                     <TextBox Text="{Binding Param9Value}" Width="100"></TextBox>
                 </StackPanel>
+                <Button Command="{Binding CreateCodeCommand}" Height="25" Width="70" Content="生成代码"></Button>
             </StackPanel>
-
+            
 
         </GroupBox>
         <GroupBox Header="图元编辑" Grid.Column="1" Foreground="Blue">
@@ -104,7 +105,15 @@
                     <TextBlock Text=" YExpress:  " ></TextBlock>
                     <TextBox Text="{Binding PointYExpress, Mode=TwoWay}" Width="100"></TextBox>
                 </StackPanel>
-                <Button Content="增加" Command="{Binding AddPointCommand}" Height="25" Width="70" HorizontalAlignment="Right"></Button>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="增加点" Command="{Binding AddPointCommand}" Height="25" Width="70" HorizontalAlignment="Right" Margin="10"></Button>
+                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="增加标注点" Command="{Binding AddRemartPointCommand}" Height="25" Width="70" HorizontalAlignment="Right" Margin="10"></Button>
+                    <RadioButton Content="横向" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsHor}"/>
+                    <RadioButton Content="纵向" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsVer}"></RadioButton>
+                </StackPanel>
 
                 <TextBlock Text="增加线"></TextBlock>
                 <StackPanel Orientation="Horizontal" >
@@ -115,10 +124,31 @@
                     <TextBlock Text="B:  " ></TextBlock>
                     <TextBox Text="{Binding LineB, Mode=TwoWay}" Width="50"></TextBox>
                 </StackPanel>
-                <Button Content="增加" Command="{Binding AddLineCommand}" Height="25" Width="70" HorizontalAlignment="Right"></Button>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="增加线" Command="{Binding AddLineCommand}" Height="25" Width="70" Margin="10"/>
+                    <Button Content="增加标注线" Command="{Binding AddRemartLineCommand}" Height="25" Width="70" ></Button>
+                </StackPanel>
 
+                <TextBlock Text="增加标注文本"></TextBlock>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="文字:  " ></TextBlock>
+                    <TextBox Text="{Binding RemartText, Mode=TwoWay}" Width="50"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="文字表达式:  " ></TextBlock>
+                    <TextBox Text="{Binding RemartTextExpress, Mode=TwoWay}" Width="50"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="绘制点:  " ></TextBlock>
+                    <TextBox Text="{Binding StartPoint, Mode=TwoWay}" Width="50"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="增加标注" Command="{Binding AddRemartTextCommand}" Height="25" Width="70" Margin="10"/>
+                    <RadioButton Content="横向" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsHor}"/>
+                    <RadioButton Content="纵向" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsVer}"></RadioButton>
+                </StackPanel>
                 <Grid >
-                    <ListBox ItemsSource="{Binding GraphSet.GraphObjects}" Height="450">
+                    <ListBox ItemsSource="{Binding GraphSet.GraphObjects}" Height="270">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}"></TextBlock>
@@ -131,14 +161,7 @@
         <canvas:TemplateCanvas Width="700"  Height="700"
             x:Name="Canvas1"
             Grid.Column="2" DataContext="{Binding}" Margin="10,0">
-            <Ellipse
-      Canvas.Top="50"
-      Canvas.Left="50"
-      Fill="#FFFFFF00"
-      Height="75"
-      Width="75"
-      StrokeThickness="5"
-      Stroke="#FF0000FF"/>
+
         </canvas:TemplateCanvas>
     </Grid>
 </Window>

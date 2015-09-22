@@ -1,0 +1,11 @@
+public RemartPoint $RemartPoint$
+{
+    get
+    {
+        var x = OffsetX + ($XExpress$) * Scale;
+        var y = OffsetX + ($YExpress$) * Scale;
+        var thickness = 10;
+        return new RemartPoint(x, y, thickness);
+    }
+}
+

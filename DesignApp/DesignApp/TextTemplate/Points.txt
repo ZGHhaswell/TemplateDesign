@@ -1,0 +1,11 @@
+public Point $Point$
+{
+    get
+    {
+        var x = OffsetX + ($XExpress$) * Scale;
+        var y = OffSetY + ($YExpress$) * Scale;
+        var thickness = 10;
+        return new Point(x, y, thickness);
+    }
+}
+

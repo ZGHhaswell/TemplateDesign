@@ -72,6 +72,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Canvas\TemplateCanvas.cs" />
+    <Compile Include="CodeFactory\GraphTemplate.cs" />
+    <Compile Include="CodeFactory\GraphTemplateBase.cs" />
     <Compile Include="Data\GraphObject.cs" />
     <Compile Include="Data\GraphSet.cs" />
     <Compile Include="Data\Line.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Data\RemartLine.cs" />
     <Compile Include="Data\RemartPoint.cs" />
     <Compile Include="Data\RemartText.cs" />
+    <Compile Include="Interface\ITempalte.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -116,7 +119,21 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="TextTemplate\GraphObjects.txt" />
+    <Resource Include="TextTemplate\Lines.txt" />
+    <Resource Include="TextTemplate\ParamSet.txt" />
+    <Resource Include="TextTemplate\Points.txt" />
+    <Resource Include="TextTemplate\RemartLines.txt" />
+    <Resource Include="TextTemplate\RemartPoints.txt" />
+    <Resource Include="TextTemplate\RemartText.txt" />
+    <Resource Include="TextTemplate\Template.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /r /y $(ProjectDir)TextTemplate\* $(TargetDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

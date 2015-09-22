@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DesignApp.Data;
+using DesignApp.Interface;
+
+namespace DesignApp.CodeFactory
+{
+    public class $TemplateName$ : GraphTemplateBase, ITempalte
+    {
+        $ParamSet$
+        
+        $Points$
+        
+        $RemartPoints$
+        
+        $Lines$
+        
+        $RemartLines$
+        
+        $RemartText$
+        
+        public IList<GraphObject> GraphObjects
+        {
+            get
+            {
+                var list = new List<GraphObject>();
+                $GraphObjects$
+                return list;
+            }
+        }
+    }
+}

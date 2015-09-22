@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using DesignApp.Interface;
 
 namespace DesignApp.Canvas
 {
@@ -19,7 +20,7 @@ namespace DesignApp.Canvas
                 return;
             }
 
-            var graphSet = dataContext.GraphSet;
+            ITempalte graphSet = dataContext.GraphSet;
 
             foreach (var graphObj in graphSet.GraphObjects)
             {
