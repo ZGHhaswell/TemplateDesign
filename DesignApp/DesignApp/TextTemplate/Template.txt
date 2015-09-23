@@ -29,6 +29,8 @@ namespace DesignApp.CodeFactory
             get
             {
                 var list = new List<GraphObject>();
+                $UpdateTransforms$
+                UpdateLocation();
                 $GraphObjects$
                 return list;
             }

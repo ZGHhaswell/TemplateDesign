@@ -47,9 +47,10 @@ namespace DesignApp.Data
         public override void Draw(System.Windows.Media.DrawingContext dc)
         {
             var formattedText = GetFormattedText(Text, Thickness);
+            
             if (Orientation == Orientation.Hor)
             {
-                dc.DrawText(formattedText, new System.Windows.Point(StartPoint.X, StartPoint.Y));
+                dc.DrawText(formattedText, new System.Windows.Point(StartPoint.X - formattedText.Width/2, StartPoint.Y));
             }
             else
             {

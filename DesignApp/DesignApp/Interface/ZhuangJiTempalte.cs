@@ -47,7 +47,7 @@ namespace DesignApp.CodeFactory
             get
             {
                 var x = OffsetX + (0) * Scale;
-                var y = OffSetY + (P2+P3) * Scale;
+                var y = OffSetY + (P2 + P3) * Scale;
                 var thickness = 10;
                 return new Point(x, y, thickness);
             }
@@ -125,7 +125,7 @@ namespace DesignApp.CodeFactory
             get
             {
                 var x = OffsetX + (0) * Scale;
-                var y = OffsetX + (-50) * Scale;
+                var y = OffSetY + (-50) * Scale;
                 var thickness = 10;
                 return new RemartPoint(x, y, thickness);
             }
@@ -136,7 +136,7 @@ namespace DesignApp.CodeFactory
             get
             {
                 var x = OffsetX + (P1) * Scale;
-                var y = OffsetX + (-50) * Scale;
+                var y = OffSetY + (-50) * Scale;
                 var thickness = 10;
                 return new RemartPoint(x, y, thickness);
             }
@@ -249,7 +249,7 @@ namespace DesignApp.CodeFactory
             {
                 var pointX = RemartPoint1;
                 var pointY = RemartPoint2;
-                var thickness = 12;
+                var thickness = 5;
                 return new RemartLine(pointX, pointY, thickness);
             }
         }
@@ -273,6 +273,18 @@ namespace DesignApp.CodeFactory
             get
             {
                 var list = new List<GraphObject>();
+                UpdateTransform(Point1);
+                UpdateTransform(Point2);
+                UpdateTransform(Point3);
+                UpdateTransform(Point4);
+                UpdateTransform(Point5);
+                UpdateTransform(Point6);
+                UpdateTransform(Point7);
+                UpdateTransform(Point8);
+                UpdateTransform(Point9);
+                UpdateTransform(RemartPoint1);
+                UpdateTransform(RemartPoint2);
+                UpdateLocation();
                 list.Add(Point1);
                 list.Add(Point2);
                 list.Add(Point3);

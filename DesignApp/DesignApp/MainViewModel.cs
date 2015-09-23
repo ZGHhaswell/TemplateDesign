@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -570,6 +571,8 @@ namespace DesignApp
 
         public IList<string> RemartTexts { get; set; }
 
+        public IList<string> UpdateTransforms { get; set; }
+
 
         public IList<string> GraphObjects { get; set; }
 
@@ -578,37 +581,36 @@ namespace DesignApp
 
         private void CreateCodeCommandExecute()
         {
-            //var saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "*.cs";
-            //saveFileDialog.FileName = string.Format("{0}.cs", TemplateName);
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "*.cs|*.*";
+            saveFileDialog.FileName = string.Format("{0}.cs", TemplateName);
 
-            //var dialogResult = saveFileDialog.ShowDialog();
+            var dialogResult = saveFileDialog.ShowDialog();
 
-            //if (dialogResult != null && dialogResult.Value)
-            //{
-            //    var fileName = saveFileDialog.FileName;
+            if (dialogResult != null && dialogResult.Value)
+            {
+                var fileName = saveFileDialog.FileName;
+                SaveTempalteCode(fileName);
 
+            }
+            
 
-            //}
-            //GetCodeTempalte();
+            //var zhuangji = new ZhuangJi();
 
-            var zhuangji = new ZhuangJi();
+            //var random = new Random();
+            //zhuangji.P1 = random.Next(100, 1000);
+            //zhuangji.P2 = random.Next(100, 1000);
+            //zhuangji.P3 = random.Next(100, 1000);
+            //zhuangji.P4 = random.Next(100, 1000);
 
-            var random = new Random();
-            zhuangji.P1 = random.Next(100, 300);
-            zhuangji.P2 = random.Next(100, 150);
-            zhuangji.P3 = random.Next(100, 150);
-            zhuangji.P4 = random.Next(100, 150);
+            //GraphSet = zhuangji;
 
-            GraphSet = zhuangji;
-
-            Canvas.InvalidateVisual();
+            //Canvas.InvalidateVisual();
             
         }
 
-        private void GetCodeTempalte()
+        private void SaveTempalteCode(string filePath)
         {
-            var templateName = TemplateName;
             var graphObjs = GraphSet.GraphObjects.OrderBy(obj => obj.Order).ThenBy(obj => obj.Name);
 
             var newParams = new List<string>();
@@ -634,6 +636,8 @@ namespace DesignApp
 
             var newGraphObjes = new List<string>();
 
+            var updateTransforms = new List<string>();
+
             foreach (var graphObject in graphObjs)
             {
                 var point = graphObject as Point;
@@ -645,10 +649,12 @@ namespace DesignApp
                 if (remartPoint != null)
                 {
                     LoadRemartPoint(newRemartPoints, remartPoint);
+                    LoadUpdateTransforms(updateTransforms, remartPoint);
                 }
                 else if(point != null)
                 {
                     LoadPoint(newPoints, point);
+                    LoadUpdateTransforms(updateTransforms, point);
                 }
                 if (remartLine != null)
                 {
@@ -701,6 +707,10 @@ namespace DesignApp
                 {
                     template.AddRange(newRemartTexts);
                 }
+                else if (code.Contains("$UpdateTransforms$"))
+                {
+                    template.AddRange(updateTransforms);
+                }
                 else if (code.Contains("$GraphObjects$"))
                 {
                     template.AddRange(newGraphObjes);
@@ -710,16 +720,7 @@ namespace DesignApp
                     template.Add(code);
                 }
             }
-
-            //template = template.Replace("$TemplateName$", TemplateName);
-            //template = template.Replace("$ParamSet$", newParams.ToString());
-            //template = template.Replace("$Points$", newPoints.ToString());
-            //template = template.Replace("$RemartPoints$", newRemartPoints.ToString());
-            //template = template.Replace("$Lines$", newLines.ToString());
-            //template = template.Replace("$RemartLines$", newRemartLines.ToString());
-            //template = template.Replace("$RemartText$", newRemartTexts.ToString());
-
-            File.WriteAllLines("C:/Tempalte.cs", template);
+            File.WriteAllLines(filePath, template);
         }
 
         private void LoadParam(IList<string> list, string param, string value)
@@ -815,6 +816,17 @@ namespace DesignApp
             
         }
 
+        private void LoadUpdateTransforms(IList<string> list, Point point)
+        {
+            foreach (var updateTransform in UpdateTransforms)
+            {
+                var newUpdateTransform = updateTransform.Replace("$Point$", point.Name);
+                list.Add(newUpdateTransform);
+
+                Trace.WriteLine(newUpdateTransform);
+            }
+        }
+
         public ITempalte GraphSet { get; set; }
 
 
@@ -860,6 +872,9 @@ namespace DesignApp
 
             var remartTextsPath = Path.Combine(directoryName, "RemartText.txt");
             RemartTexts = Load(remartTextsPath);
+
+            var updateTransformPath = Path.Combine(directoryName, "UpdateTransforms.txt");
+            UpdateTransforms = Load(updateTransformPath);
 
             var graphObjectPath = Path.Combine(directoryName, "GraphObjects.txt");
             GraphObjects = Load(graphObjectPath);

@@ -120,7 +120,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="TextTemplate\UpdateTransforms.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="TextTemplate\GraphObjects.txt" />
     <Resource Include="TextTemplate\Lines.txt" />
