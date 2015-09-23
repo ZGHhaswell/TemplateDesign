@@ -81,8 +81,6 @@ namespace DesignApp.CodeFactory
 
             Scale = scaleX > scaleY ? scaleY : scaleX;
 
-
-
             OffsetX = (CanvasX - width * Scale) / 2;
             OffSetY = (CanvasY - height * Scale) / 2;
         }
