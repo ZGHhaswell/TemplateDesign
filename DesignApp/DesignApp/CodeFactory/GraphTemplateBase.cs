@@ -76,15 +76,18 @@ namespace DesignApp.CodeFactory
 
         protected void UpdateLocation()
         {
-            var scaleX = (CanvasX - Wraper)/MaxX;
-            var scaleY = (CanvasY - Wraper)/MaxY;
+            var width = MaxX - MinX;
+            var height = MaxY - MinY;
+
+            var scaleX = (CanvasX - Wraper) / width;
+            var scaleY = (CanvasY - Wraper) / height;
 
             Scale = scaleX > scaleY ? scaleY : scaleX;
 
 
 
-            OffsetX = (CanvasX - MaxX * Scale)/2;
-            OffSetY = (CanvasY - MaxY * Scale) / 2;
+            OffsetX = (CanvasX - width * Scale) / 2;
+            OffSetY = (CanvasY - height * Scale) / 2;
         }
     }
 }
