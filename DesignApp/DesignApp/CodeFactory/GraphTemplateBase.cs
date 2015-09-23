@@ -49,9 +49,6 @@ namespace DesignApp.CodeFactory
             var x = point.X;
             var y = point.Y;
 
-            if (x < 0 || y < 0)
-                return;
-
             //刷新矩形区域
             if (x < MinX)
             {
